@@ -1,0 +1,20 @@
+{
+  "name": "app-starwars",
+  "version": "1.0.0",
+  "description": "API REST con Serverless Framework, | AWS | MySQL | NODE JS | LAMBDAN | RDS",
+  "main": "handler.js",
+  "scripts": {
+    "deploy:dev": "sls deploy --stage dev --region us-east-2",
+    "offline": "sls offline --stage dev --region us-east-2 --host 0.0.0.0"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "serverless-offline": "^13.1.1"
+  },
+  "dependencies": {
+    "http-status-codes": "^2.3.0",
+    "knex": "^0.95.15",
+    "mysql": "^2.18.1"
+  }
+}

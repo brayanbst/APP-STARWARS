@@ -1,0 +1,61 @@
+service: AWS-STARTWARS
+
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  lambdaHashingVersion: 20201221
+  stage: ${opt:stage, 'dev'}
+  region: ${opt:region, 'us-west-2'}
+  apiGateway:
+      request:
+        schemas:
+          planet-input-model:
+            name: PlanetaInputModel
+            schema: ${file(infraestructure/handlers/schemas/planets-schema.json)}
+            description: "Validacion de los datos del planeta"
+
+plugins:
+  - serverless-offline
+
+functions:
+  getPlanets:
+    handler: infraestructure/handlers/planets-handler.getPlanets
+    events:
+        - http:
+            path: /planets
+            method: get
+  createPlanet:
+    handler: infraestructure/handlers/planets-handler.createPlanet
+    events:
+        - http:
+            path: /planets
+            method: post
+  updatePlanet:
+    handler: infraestructure/handlers/planets-handler.updatePlanet
+    events:
+        - http:
+            path: /planets/{id}       # https://dominio.fulanito/{stage}/planets/{id}
+            method: put
+  deletePlanet:
+    handler: infraestructure/handlers/planets-handler.deletePlanet
+    events:
+        - http:
+            path: planets/{id}       # https://dominio.fulanito/{stage}/planets/{id}
+            method: delete
+  getDetailPlanet:
+    handler: infraestructure/handlers/planets-handler.getDetailPlanet
+    events:
+        - http:
+            path: planets/{id}       # https://dominio.fulanito/{stage}/planets/{id}
+            method: get
+package:
+  include: 
+    - serverless.yml
+    - package.json
+  exclude:
+    - node_modules/**
+    - .git/**
+    - .gitignore
+    - README.md            

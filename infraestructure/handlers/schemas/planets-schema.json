@@ -1,0 +1,92 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "PlanetaInputModel",
+    "description": "Validación de los datos del planeta",
+    "type": "object",
+    "properties": {
+        "nombre": {
+            "description": "Nombre del planeta",
+            "type": "string",
+            "maxLength": 50,
+            "minLength": 2
+        },
+        "periodoRotacion": {
+            "description": "Periodo de rotación del planeta",
+            "type": "string",
+            "maxLength": 10
+        },
+        "periodoOrbital": {
+            "description": "Periodo orbital del planeta",
+            "type": "string",
+            "maxLength": 10
+        },
+        "diametro": {
+            "description": "Diámetro del planeta",
+            "type": "string",
+            "maxLength": 10
+        },
+        "clima": {
+            "description": "Clima del planeta",
+            "type": "string",
+            "maxLength": 50
+        },
+        "gravedad": {
+            "description": "Gravedad del planeta",
+            "type": "string",
+            "maxLength": 20
+        },
+        "terreno": {
+            "description": "Terreno del planeta",
+            "type": "string",
+            "maxLength": 100
+        },
+        "aguaSuperficial": {
+            "description": "Porcentaje de agua superficial del planeta",
+            "type": "string",
+            "maxLength": 5
+        },
+        "poblacion": {
+            "description": "Población del planeta",
+            "type": "string",
+            "maxLength": 20
+        },
+        "residentes": {
+            "description": "Residentes del planeta (URLs en formato JSON String)",
+            "type": "string"
+        },
+        "peliculas": {
+            "description": "Películas del planeta (URLs en formato JSON String)",
+            "type": "string"
+        },
+        "creado": {
+            "description": "Fecha de creación del registro del planeta",
+            "type": "string",
+            "pattern": "([1-2][0-9][0-9][0-9])-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])T([0-9]{2}:[0-9]{2}:[0-9]{2}.[0-9]{3}Z)$"
+        },
+        "editado": {
+            "description": "Fecha de edición del registro del planeta",
+            "type": "string",
+            "pattern": "([1-2][0-9][0-9][0-9])-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])T([0-9]{2}:[0-9]{2}:[0-9]{2}.[0-9]{3}Z)$"
+        },
+        "url": {
+            "description": "URL del planeta",
+            "type": "string"
+        }
+    },
+    "required": [
+        "nombre",
+        "periodoRotacion",
+        "periodoOrbital",
+        "diametro",
+        "clima",
+        "gravedad",
+        "terreno",
+        "aguaSuperficial",
+        "poblacion",
+        "residentes",
+        "peliculas",
+        "creado",
+        "editado",
+        "url"
+    ]
+}
