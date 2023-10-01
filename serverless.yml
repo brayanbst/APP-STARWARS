@@ -13,7 +13,7 @@ provider:
         schemas:
           planet-input-model:
             name: PlanetaInputModel
-            schema: ${file(infraestructure/handlers/schemas/planets-schema.json)}
+            schema: ${file(src/infraestructure/handlers/schemas/planets-schema.json)}
             description: "Validacion de los datos del planeta"
 
 plugins:
@@ -21,37 +21,38 @@ plugins:
 
 functions:
   getPlanets:
-    handler: infraestructure/handlers/planets-handler.getPlanets
+    handler: src/infraestructure/handlers/planets-handler.getPlanets
     events:
         - http:
             path: /planets
             method: get
   createPlanet:
-    handler: infraestructure/handlers/planets-handler.createPlanet
+    handler: src/infraestructure/handlers/planets-handler.createPlanet
     events:
         - http:
             path: /planets
             method: post
   updatePlanet:
-    handler: infraestructure/handlers/planets-handler.updatePlanet
+    handler: src/infraestructure/handlers/planets-handler.updatePlanet
     events:
         - http:
             path: /planets/{id}       # https://dominio.fulanito/{stage}/planets/{id}
             method: put
   deletePlanet:
-    handler: infraestructure/handlers/planets-handler.deletePlanet
+    handler: src/infraestructure/handlers/planets-handler.deletePlanet
     events:
         - http:
             path: planets/{id}       # https://dominio.fulanito/{stage}/planets/{id}
             method: delete
   getDetailPlanet:
-    handler: infraestructure/handlers/planets-handler.getDetailPlanet
+    handler: src/infraestructure/handlers/planets-handler.getDetailPlanet
     events:
         - http:
             path: planets/{id}       # https://dominio.fulanito/{stage}/planets/{id}
             method: get
 package:
-  include: 
+  include:
+    - .env 
     - serverless.yml
     - package.json
   exclude:

@@ -1,4 +1,3 @@
-const { db } = require('../../infraestructure/repositories/connections');
 const planetQuery = require('../../infraestructure/repositories/planets-query');
 const planetDto = require('../helpers/planet-dto');
 

@@ -1,13 +1,13 @@
 const { responseSuccess, responseFail, responseList } = require('../helpers/responses');
 const { StatusCodes } = require('http-status-codes');
 const planetsUseCase = require('../../domain/usecase/planets-usecase');
+const axios = require('axios');
 
 const getPlanets = async (event) => {
 
     let response = null
 
     try {
-
         const result = await planetsUseCase.getPlanets(event);
         response = responseList({ event, data: result });
         
@@ -87,16 +87,15 @@ const getDetailPlanet = async (id) => {
     let response = null
 
     try {
-        const planet = await planetsUseCase.getDetailPlanet(id);
+        const result = await axios.get(`https://swapi.py4e.com/api/planets/${id}/`);
         response = responseSuccess({
-            data: planet
+            data: result.data,
+            message: 'Operación exitosa.'
         }, StatusCodes.OK);
-        
+
     } catch (error) {
         console.log('getDeattailPlanet', error)
-        
         response = responseFail(error);
-        
     }
 
     return response;

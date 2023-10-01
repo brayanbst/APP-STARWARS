@@ -1,10 +1,12 @@
-const { db } = require('./connections');
-const TableName = 'planetas';
+const config = require('../../../knexfile');
+const db = require('knex')(config);
+const TableName = 'planetas'
 
 const findPlanets = async (event) => {
     const query = event
     const offset = (query['page'] - 1) * query['limit'];
-    return db.select().from(TableName).limit(query['limit']).offset(offset);
+    const  data = db.select().from(TableName).limit(query['limit']).offset(offset);
+    return data;
 }
 
 const findOnePlanet = async (id) => {
@@ -27,6 +29,8 @@ const createPlanet = async ({
     editado,
     url
 }) => {
+    const date = new Date();
+    const formattedDate = date.toISOString().split('.')[0].replace('T', ' ');
     await db(TableName).insert({
         nombre,
         periodo_rotacion: periodoRotacion,
@@ -39,7 +43,7 @@ const createPlanet = async ({
         poblacion,
         residentes: JSON.stringify(residentes), 
         peliculas: JSON.stringify(peliculas), 
-        creado: new Date().toISOString(),
+        creado: formattedDate,
         editado: null,
         url
     });
@@ -62,6 +66,8 @@ const updatePlanet = async ({
     editado,
     url
 }, id) => {
+    const date = new Date();
+    const formattedDate = date.toISOString().split('.')[0].replace('T', ' ');
     await db(TableName)
         .where('id', '=', id)
         .update({
@@ -77,7 +83,7 @@ const updatePlanet = async ({
             residentes: JSON.stringify(residentes),
             peliculas: JSON.stringify(peliculas), 
             creado,
-            editado: new Date().toISOString(),
+            editado: formattedDate,
             url
         });
 }
