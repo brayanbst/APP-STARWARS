@@ -2,6 +2,14 @@
 ## Introducción
 La APP-STARWARS API es una aplicación Serverless desarrollada en AWS, construida con Node.js y MySQL. Esta API, basada en el universo de Star Wars, permite realizar operaciones CRUD en recursos de planetas, con despliegue automático utilizando el framework Serverless y pruebas unitarias con Tape. Además, la estructura del código sigue el patrón de Arquitectura Hexagonal y está organizada por dominios para mantener el código limpio y modular.
 
+## Instalación de Dependencias
+Para instalar las dependencias del proyecto, ejecute el siguiente comando en la raíz del proyecto:
+
+```
+npm install
+```
+Este comando instalará todas las dependencias necesarias para el correcto funcionamiento de la API.
+
 ## Documentación en OpenAPI/Swagger
 La documentación detallada de los endpoints de la API está disponible en Swagger/OpenAPI y puede ser accesada a través del siguiente enlace: Swagger - APP-STARWARS 
 API
