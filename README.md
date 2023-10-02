@@ -1,63 +1,60 @@
-##APP-STARWARS Documentation##
+Documentación de Uso de APP-STARWARS API
+Introducción
+La APP-STARWARS API es una aplicación Serverless desarrollada en AWS, construida con Node.js y MySQL. Esta API, basada en el universo de Star Wars, permite realizar operaciones CRUD en recursos de planetas, con despliegue automático utilizando el framework Serverless y pruebas unitarias con Tape. Además, la estructura del código sigue el patrón de Arquitectura Hexagonal y está organizada por dominios para mantener el código limpio y modular.
 
-**Overview
-## APP-STARWARS 
-es una API REST construida utilizando el Serverless Framework. La API está alojada en AWS y utiliza Node.js como su entorno de ejecución en combinación con Lambda para manejar las solicitudes. Además, la API interactúa con una base de datos MySQL alojada en AWS RDS para realizar operaciones CRUD en los recursos de planetas. Esta API permite la creación, actualización, eliminación y recuperación de información relacionada con los planetas en el universo de Star Wars.
+Documentación en OpenAPI/Swagger
+La documentación detallada de los endpoints de la API está disponible en Swagger/OpenAPI y puede ser accesada a través del siguiente enlace: Swagger - APP-STARWARS API
 
-##Tecnologías
-Serverless Framework
-AWS
-MySQL
-Node.js
-Lambda
-RDS
+Despliegue en AWS
+Para desplegar la aplicación en AWS sin errores, se utiliza el comando deploy del framework Serverless.
 
-##Endpoints
-1. GET /planets
-Descripción: Obtiene la lista de todos los planetas disponibles.
-Parámetros:
-page (query): Número de página para paginación (opcional).
-limit (query): Límite de elementos por página para paginación (opcional).
-Respuestas:
-200 Success
-2. POST /planets
-Descripción: Crea un nuevo planeta con los datos proporcionados.
-Cuerpo de la solicitud:
-nombre (string): Nombre del planeta.
-periodoRotacion (string): Período de rotación del planeta.
-periodoOrbital (string): Período orbital del planeta.
-... (otros campos relacionados con el planeta).
-Respuestas:
-201 Created
-3. GET /planets/{id}
-Descripción: Lista un planeta en específico de SWAPI STAR WARS, consumiendo un servicio externo.
-Parámetros:
-id (path): ID del planeta a listar.
-Respuestas:
-200 Success
-4. PUT /planets/{id}
-Descripción: Actualiza un planeta con los datos proporcionados.
-Parámetros:
-id (path): ID del planeta a actualizar.
-Cuerpo de la solicitud:
-nombre (string): Nombre del planeta.
-periodoRotacion (string): Período de rotación del planeta.
-... (otros campos relacionados con el planeta).
-Respuestas:
-200 Success
-5. DELETE /planets/{id}
-Descripción: Elimina un planeta.
-Parámetros:
-id (path): ID del planeta a eliminar.
-Respuestas:
-200 Success
-Seguridad
-La API utiliza AWS Signature Version 4 (sigv4) para la autenticación y autorización de solicitudes. Las solicitudes deben incluir el encabezado Authorization con el valor apropiado para ser autenticadas.
+sh
+Copy code
+npm run deploy
+Estructura del Proyecto
+El proyecto trabaja en capas y por dominio, utilizando el patrón de Arquitectura Hexagonal, lo que facilita la mantenibilidad y testabilidad del código. Asimismo, el proyecto utiliza Knex para las migraciones automatizadas de la base de datos.
 
-##Base de Datos
-La API se comunica con una instancia de MySQL en AWS RDS para almacenar y recuperar información sobre los planetas. La estructura de la base de datos está diseñada para acomodar la información relevante relacionada con los planetas en el universo de Star Wars.
+Comandos Útiles
+Generar Migraciones:
 
-##Despliegue
-La aplicación está desplegada en AWS, utilizando servicios como Lambda para la ejecución de funciones sin servidor y RDS para el alojamiento de bases de datos. Serverless Framework se utiliza para configurar y desplegar la aplicación de forma eficiente y efectiva.
+sh
+Copy code
+npm run migrate
+Este comando aplica las migraciones pendientes directamente a la base de datos.
 
-Este documento proporciona una visión general de los aspectos más críticos de APP-STARWARS, permitiendo a los desarrolladores y usuarios comprender y interactuar con la API de manera efectiva.
+Crear Nuevas Migraciones:
+
+sh
+Copy code
+npm run new migrate
+Utiliza este comando para generar nuevas migraciones basadas en las tablas de la base de datos.
+
+Ejecutar Pruebas Unitarias:
+
+sh
+Copy code
+npm run test
+Realiza pruebas unitarias utilizando Tape.
+
+Desplegar la Aplicación:
+
+sh
+Copy code
+npm run deploy
+Este comando inicia el proceso de despliegue en AWS utilizando el framework Serverless.
+
+Ejecutar la Aplicación Localmente:
+
+sh
+Copy code
+npm run offline
+Utiliza este comando para ejecutar la aplicación localmente y probarla.
+
+Entornos de Desarrollo
+El proyecto permite trabajar con diferentes entornos como:
+
+Desarrollo
+Producción
+Test
+Conclusión
+Este documento proporciona las instrucciones de uso y detalles pertinentes de APP-STARWARS API, permitiendo a los desarrolladores interactuar, testear y desplegar la API de manera efectiva y eficiente, asegurando así un desarrollo robusto y modular acorde a los estándares de arquitectura y calidad de software.
