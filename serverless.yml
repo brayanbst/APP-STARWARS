@@ -9,47 +9,115 @@ provider:
   stage: ${opt:stage, 'dev'}
   region: ${opt:region, 'us-west-2'}
   apiGateway:
-      request:
-        schemas:
-          planet-input-model:
-            name: PlanetaInputModel
-            schema: ${file(src/infraestructure/handlers/schemas/planets-schema.json)}
-            description: "Validacion de los datos del planeta"
+    shouldStartNameWithService: true
+    request:
+      schemas:
+        planet-input-model:
+          name: PlanetaInputModel
+          schema: ${file(src/infraestructure/handlers/schemas/planets-schema.json)}
+          description: "Validacion de los datos del planeta"
 
 plugins:
   - serverless-offline
+  - serverless-aws-documentation
+
+custom:
+  documentation:
+    apiName: "AWS-STARWARS API"
+    apiDescription: "API para gestionar planetas en Star Wars"
+    version: "1.0.0"
+    models:
+      - name: "PlanetInputModel"
+        description: "Modelo de entrada para un planeta"
+        contentType: "application/json"
+        schema: ${file(src/infraestructure/handlers/schemas/planets-schema.json)}
 
 functions:
   getPlanets:
     handler: src/infraestructure/handlers/planets-handler.getPlanets
     events:
-        - http:
-            path: /planets
-            method: get
+      - http:
+          path: /planets
+          method: get
+          documentation:
+            summary: "Obtener Planetas"
+            description: "Obtiene la lista de todos los planetas disponibles."
+            responses:
+              "200":
+                description: "Lista de Planetas"
+                
   createPlanet:
     handler: src/infraestructure/handlers/planets-handler.createPlanet
     events:
-        - http:
-            path: /planets
-            method: post
+      - http:
+          path: /planets
+          method: post
+          documentation:
+            summary: "Crear un Planeta"
+            description: "Crea un nuevo planeta con los datos proporcionados."
+            requestBody:
+              description: "Datos del planeta a crear"
+              content:
+                application/json:
+                  schema:
+                    $ref: "#/components/schemas/PlanetInputModel"
+            responses:
+              "200":
+                description: "Planeta creado exitosamente"
+              "400":
+                description: "Datos de entrada inválidos"
+                
   updatePlanet:
     handler: src/infraestructure/handlers/planets-handler.updatePlanet
     events:
-        - http:
-            path: /planets/{id}       # https://dominio.fulanito/{stage}/planets/{id}
-            method: put
+      - http:
+          path: /planets/{id}       
+          method: put
+          documentation:
+            summary: "Actualizar un Planeta"
+            description: "Actualiza un planeta con los datos proporcionados."
+            requestBody:
+              description: "Datos del planeta a Actualizar"
+              content:
+                application/json:
+                  schema:
+                    $ref: "#/components/schemas/PlanetInputModel"
+            responses:
+              "200":
+                description: "Planeta Actualizado!"
+              "400":
+                description: "Datos de entrada inválidos"
+                
   deletePlanet:
     handler: src/infraestructure/handlers/planets-handler.deletePlanet
     events:
-        - http:
-            path: planets/{id}       # https://dominio.fulanito/{stage}/planets/{id}
-            method: delete
+      - http:
+          path: /planets/{id}       
+          method: delete
+          documentation:
+            summary: "Eliminar un Planeta"
+            description: "Elimina un planeta."
+            responses:
+              "200":
+                description: "Planeta Eliminado!"
+              "400":
+                description: "Datos de entrada inválidos"
+                
   getDetailPlanet:
     handler: src/infraestructure/handlers/planets-handler.getDetailPlanet
     events:
-        - http:
-            path: planets/{id}       # https://dominio.fulanito/{stage}/planets/{id}
-            method: get
+      - http:
+          path: /planets/{id}
+          method: get
+          documentation:
+            summary: "Listar un Planeta"
+            description: "Lista un planeta en específico de SWAPI STAR WARS, consumiendo un servicio externo."
+            responses:
+              "200":
+                description: "Operación exitosa!"
+              "400":
+                description: "Datos de entrada inválidos"
+
 package:
   include:
     - .env 
@@ -59,4 +127,4 @@ package:
     - node_modules/**
     - .git/**
     - .gitignore
-    - README.md            
+    - README.md 

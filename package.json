@@ -13,17 +13,13 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "serverless-offline": "^13.1.1",
-    "tap-spec": "^5.0.0",
-    "tape": "^4.8.0"
+     
   },
   "dependencies": {
-    "aws-sdk": "^2.1040.0",
-    "serverless": "^3.0.0",
+    "axios": "^1.5.1",
     "dotenv": "^5.0.1",
     "http-status-codes": "^2.3.0",
     "knex": "^0.95.15",
-    "mysql": "^2.18.1",
-    "axios": "^1.5.1"
+    "mysql": "^2.18.1"
   }
 }
