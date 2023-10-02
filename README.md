@@ -13,7 +13,9 @@ Este comando instalará todas las dependencias necesarias para el correcto funci
 ## Documentación en OpenAPI/Swagger
 La documentación detallada de los endpoints de la API está disponible en Swagger/OpenAPI y puede ser accesada a través del siguiente enlace: Swagger - APP-STARWARS 
 API
-
+```
+https://app.swaggerhub.com/apis-docs/brayanbst/STARWARS-API/V2#/default/post_planets
+```
 ## Despliegue en AWS
 Para desplegar la aplicación en AWS sin errores, se utiliza el comando deploy del framework Serverless.
 
