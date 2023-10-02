@@ -1,7 +1,8 @@
 ##APP-STARWARS Documentation
 
 **Overview
-APP-STARWARS es una API REST construida utilizando el Serverless Framework. La API está alojada en AWS y utiliza Node.js como su entorno de ejecución en combinación con Lambda para manejar las solicitudes. Además, la API interactúa con una base de datos MySQL alojada en AWS RDS para realizar operaciones CRUD en los recursos de planetas. Esta API permite la creación, actualización, eliminación y recuperación de información relacionada con los planetas en el universo de Star Wars.
+## APP-STARWARS 
+es una API REST construida utilizando el Serverless Framework. La API está alojada en AWS y utiliza Node.js como su entorno de ejecución en combinación con Lambda para manejar las solicitudes. Además, la API interactúa con una base de datos MySQL alojada en AWS RDS para realizar operaciones CRUD en los recursos de planetas. Esta API permite la creación, actualización, eliminación y recuperación de información relacionada con los planetas en el universo de Star Wars.
 
 ##Tecnologías
 Serverless Framework
